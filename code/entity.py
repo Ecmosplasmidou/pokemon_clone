@@ -12,7 +12,7 @@ class Entity(pygame.sprite.Sprite):
         self.image = Tool.split_image(self.spritesheet, 0, 0, 24, 32)
         self.position: pygame.math.Vector2 = pygame.math.Vector2(x, y)
         self.rect : pygame.Rect = self.image.get_rect()
-        self.all_images = self.get_all_images()
+        self.all_images: dict[str, list[pygame.Surface]] = self.get_all_images(self.spritesheet)
         self.reset_animation: bool = False    
         self.image_part = 0
         self.index_image = 0
@@ -22,8 +22,10 @@ class Entity(pygame.sprite.Sprite):
         self.animation_walk: bool = False
         self.direction = "down"
         
-        self.animation_step_time: float = 0
+        self.animation_step_time: float = 0.0
         self.action_animation = 16
+        
+        self.speed: int = 1
     
     def update(self):
         self.animation_sprite()
@@ -62,17 +64,17 @@ class Entity(pygame.sprite.Sprite):
         if self.animation_walk:
             self.animation_step_time += self.screen.get_delta_time()
             if self.step < 16 and self.animation_step_time > self.action_animation:
-                self.step += 1
+                self.step += self.speed
                 if self.direction == "left":
-                    self.position.x -= 1
+                    self.position.x -= self.speed
                 elif self.direction == "right":
-                    self.position.x += 1
+                    self.position.x += self.speed
                 elif self.direction == "up":
-                    self.position.y -= 1
+                    self.position.y -= self.speed
                 elif self.direction == "down":
-                    self.position.y += 1
+                    self.position.y += self.speed
                 self.animation_step_time = 0
-            elif self.step == 16:
+            elif self.step >= 16:
                 self.step = 0
                 self.animation_walk = False
                 if self .reset_animation:
@@ -97,7 +99,7 @@ class Entity(pygame.sprite.Sprite):
         self.position = pygame.math.Vector2(self.rect.center)
         
         
-    def get_all_images(self):
+    def get_all_images(self, spritesheet) -> dict[str, list[pygame.Surface]]:
         all_images = {
             "down": [],
             "left": [],
@@ -105,10 +107,10 @@ class Entity(pygame.sprite.Sprite):
             "up": []
         }
         
-        width: int = self.spritesheet.get_width()//4
-        height: int = self.spritesheet.get_height()//4
+        width: int = spritesheet.get_width()//4
+        height: int = spritesheet.get_height()//4
         
         for x in range(4):
             for i, key in enumerate(all_images.keys()):
-                all_images[key].append(Tool.split_image(self.spritesheet, x*width, i*height, width, height))
+                all_images[key].append(Tool.split_image(spritesheet, x*width, i*height, width, height))
         return all_images

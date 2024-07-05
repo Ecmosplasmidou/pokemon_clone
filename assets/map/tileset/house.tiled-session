@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map0.tmx",
+    "activeFile": "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map_0.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,18 +11,18 @@
     "fileStates": {
         "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/house_0.tmx": {
             "expandedGroupLayers": [
-                4,
-                6
+                6,
+                4
             ],
             "expandedObjectLayers": [
-                4,
-                5
+                5,
+                4
             ],
             "scale": 3,
             "selectedLayer": 5,
             "viewCenter": {
-                "x": 222.16666666666669,
-                "y": 115.16666666666666
+                "x": 184.16666666666669,
+                "y": 119.83333333333333
             }
         },
         "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map0.tmx": {
@@ -42,17 +42,18 @@
         },
         "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map_0.tmx": {
             "expandedGroupLayers": [
-                8
+                8,
+                9
             ],
             "expandedObjectLayers": [
-                10,
-                8
+                8,
+                10
             ],
             "scale": 8,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": 122.4375,
-                "y": 145.8125
+                "x": 713.3125,
+                "y": 447.9375
             }
         },
         "interieur1.tsx": {
@@ -66,11 +67,11 @@
             "scaleInDock": 1
         },
         "tileset_interieur.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 0.75,
             "scaleInEditor": 1
         },
         "tileset_pokemon_sdk.tsx": {
-            "scaleInDock": 1,
+            "scaleInDock": 2,
             "scaleInEditor": 1
         }
     },
@@ -79,18 +80,19 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 23,
     "openFiles": [
-        "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map0.tmx",
         "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/house_0.tmx",
         "tileset_pokemon_sdk.tsx",
         "tileset_interieur.tsx",
-        "maison.tsx"
+        "maison.tsx",
+        "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map_0.tmx"
     ],
     "project": "house.tiled-project",
     "recentFiles": [
-        "maison.tsx",
-        "tileset_interieur.tsx",
-        "tileset_pokemon_sdk.tsx",
         "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/house_0.tmx",
+        "tileset_pokemon_sdk.tsx",
+        "tileset_interieur.tsx",
+        "maison.tsx",
+        "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map_0.tmx",
         "C:/Users/cassa/Desktop/python/test-pygame/mon-jeu/assets/map/map0.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

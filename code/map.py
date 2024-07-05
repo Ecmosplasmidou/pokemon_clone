@@ -15,6 +15,8 @@ class Map:
         
         self.player: Player | None = None
         self.switchs: list[Switch] | None = None
+        self.collision: list[pygame.Rect] | None = None
+        
         self.current_map: Switch = Switch("switch", "map_0", pygame.Rect(0, 0, 0, 0), 0)
         
         self.switch_map(self.current_map)
@@ -32,12 +34,19 @@ class Map:
         else:
             self.map_layer.zoom = 2.5
             
+            
         self.switchs = []
+        self.collision = []
         
+        
+                
         for obj in self.tmx_data.objects:
-            type = obj.name.split(" ")[0]
-            if type == "switch":
-                self.switchs.append(Switch(type, obj.name.split(" ")[1], pygame.Rect(obj.x, obj.y, obj.width, obj.height), int(obj.name.split(" ")[-1])))
+            if obj.name:  # Vérifiez si obj.name n'est pas None
+                type = obj.name.split(" ")[0]
+                if type == "collision":
+                    self.collision.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
+                elif type == "switch":
+                    self.switchs.append(Switch(type, obj.name.split(" ")[1], pygame.Rect(obj.x, obj.y, obj.width, obj.height), int(obj.name.split(" ")[-1])))
                 
         
         if self.player:
@@ -45,7 +54,10 @@ class Map:
             self.player.align_hitbox()
             self.player.step = 16
             self.player.add_switchs(self.switchs)
+            self.player.add_collision(self.collision)
             self.group.add(self.player)
+            if switch.name.split("_")[0] == "house": 
+                self.player.switch_bike(True)
             
         self.current_map = switch
         
@@ -54,6 +66,7 @@ class Map:
         self.player = player
         self.player.align_hitbox()
         self.player.add_switchs(self.switchs)
+        self.player.add_collision(self.collision)
         
         
     def update(self) -> None:
@@ -69,3 +82,4 @@ class Map:
     def pose_player(self, switch: Switch) -> None:
         position = self.tmx_data.get_object_by_name("spawn" + " " + self.current_map.name + " " + str(switch.port))
         self.player.position = pygame.math.Vector2(position.x, position.y)
+        
