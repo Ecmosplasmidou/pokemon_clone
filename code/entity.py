@@ -1,13 +1,11 @@
 import pygame
 from tool import Tool
-from keylistener import KeyListener
 from screen import Screen
 
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, keylistener: KeyListener, screen : Screen, x: int, y: int):
+    def __init__(self, screen : Screen, x: int, y: int):
         super().__init__()
-        self.screen = screen
-        self.keylistener = keylistener
+        self.screen: Screen = screen
         self.spritesheet = pygame.image.load("assets/sprite/hero_01_red_m_walk.png")
         self.image = Tool.split_image(self.spritesheet, 0, 0, 24, 32)
         self.position: pygame.math.Vector2 = pygame.math.Vector2(x, y)
